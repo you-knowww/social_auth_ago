@@ -1,0 +1,10 @@
+name: Social Auth ArcGIS Online
+type: module
+description: 'Social Auth integration for ArcGIS Online.'
+core_version_requirement: ^9 || ^10
+package: Social
+
+configure: social_auth_ago.settings_form
+
+dependencies:
+  - social_auth:social_auth

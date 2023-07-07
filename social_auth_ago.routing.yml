@@ -1,0 +1,7 @@
+social_auth_ago.settings_form:
+  path: 'admin/config/social-api/social-auth/ago'
+  defaults:
+    _title: 'ArcGIS Online user authentication'
+    _form: '\Drupal\social_auth_ago\Form\AgoAuthSettingsForm'
+  requirements:
+    _permission: 'administer social api authentication'

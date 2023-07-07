@@ -1,0 +1,25 @@
+social_auth_ago.settings:
+  type: config_object
+  label: 'Social Auth ArcGIS Online settings'
+  mapping:
+    url_authorization:
+      type: string
+      label: 'Authorization URL'
+    url_access_token:
+      type: string
+      label: 'Token URL'
+    url_resource_owner_details:
+      type: string
+      label: 'Resource Owner Details URL'
+    client_id:
+      type: string
+      label: 'Client ID'
+    client_secret:
+      type: string
+      label: 'Client Secret'
+    scopes:
+      type: string
+      label: 'Scopes to be requested'
+    endpoints:
+      type: string
+      label: 'API endpoints to be requested'
