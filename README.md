@@ -6,23 +6,21 @@ CONTENTS OF THIS FILE
  * Installation
  * Configuration
  * How it works
- * Support requests
- * Maintainers
 
 
 INTRODUCTION
 ------------
 
-Social Auth Google is a Google authentication integration for
+Social Auth ArcGIS Online is an ArcGIS Online authentication integration for
 Drupal. It is based on the Social Auth and Social API projects
 
 It adds to the site:
 
- * A new url: `/user/login/google`.
+ * A new url: `/user/login/ago`.
 
- * A settings form at `/admin/config/social-api/social-auth/google`.
+ * A settings form at `/admin/config/social-api/social-auth/ago`.
 
- * A Google logo in the Social Auth Login block.
+ * An ArcGIS Online logo in the Social Auth Login block.
 
 
 REQUIREMENTS
@@ -51,115 +49,48 @@ In Drupal:
 
  2. Navigate to Configuration » User authentication » Google and copy
    the Authorized redirect URL field value (the URL should end in
-   `/user/login/google/callback`).
+   `/user/login/ago/callback`).
 
-In [Google Cloud Console](https://console.cloud.google.com/):
+In [ArcGIS Online](https://arcgis.com):
 
- 3. Log in to a Google account.
+ 3. Log in to an ArcGIS Online account.
 
- 4. Navigate to APIs & Services and click [Create Project](https://console.cloud.google.com/projectcreate).
+ 4. Navigate to a Web Mapping Application and select Settings.
 
- 5. Set the Project name and Location as desired.
+ 5. Scroll to Redirect URLs.
 
- 6. Click Create.
+ 6. Paste the URL copied from Step 2 in the URI field.
 
- 7. With the new project selected, navigate to APIs & Services » OAuth consent
-    screen.
+ 7. Select Save at bottom of the page.
 
- 8. Select the "External" User Type and click Create.
+ 8. Scroll up to Credentials.
 
- 9. Set the App name, User support email, and Developer contact information
-    fields as desired (all other fields are optional).
-
- 10. Click Save and Continue
-
- 11. On the Scopes add any desired scopes (none are required).
-
- 12. Click Save and Continue.
-
- 13. On the Test users steps add at least one email address to be used for
-     testing the implementation.
-
- 14. Click Save and Continue.
-
- 15. Navigate to APIs & Services » Credentials.
-
- 16. Click Create Credentials » OAuth client ID.
-
- 17. Select "Web application" in the Application type field.
-
- 18. Set the Name field as desired.
-
- 19. In the Authorized redirect URIs section click Add URI.
-
- 20. Paste the URL copied from Step 2 in the URI field.
-
- 21. Click Create.
-
- 22. Copy the new Client Secret (Google will not show it again!) and Client ID
-     and save them somewhere safe.
-
- 23. Click OK.
+ 9. Copy Client ID and Client Secret.
 
 In Drupal:
 
- 24. Return to Configuration » User authentication » Google
+ 10. Return to Configuration » User authentication » Google
 
- 25. Enter the Google client ID in the Client ID field.
+ 11. Enter the Google client ID in the Client ID field.
 
- 26. Enter the Google secret key in the Client secret field.
+ 12. Enter the Google secret key in the Client secret field.
 
- 27. Click Save configuration.
+ 13. Click Save configuration.
 
- 28. Navigate to Structure » Block Layout and place a Social Auth login block
+ 14. Navigate to Structure » Block Layout and place a Social Auth login block
      somewhere on the site (if not already placed).
-
-That's it! Log in with one of the test users added during the setup in Google
-Cloud.
-
-When ready log in to Google Cloud Console, navigate to APIs & Services » OAuth
-consent screen, and click Publish App to enable access for any user with a
-Google account.
 
 
 HOW IT WORKS
 ------------
 
-The user can click on the Google logo on the Social Auth Login block
+The user can click on the ArcGIS Online logo on the Social Auth Login block
 You can also add a button or link anywhere on the site that points
-to `/user/login/google`, so theming and customizing the button or link
+to `/user/login/ago`, so theming and customizing the button or link
 is very flexible.
 
-After Google has returned the user to your site, the module compares the user id
-or email address provided by Google. If the user has previously registered using
-Google or your site already has an account with the same email address, the user
-is logged in. If not, a new user account is created. Also, a Google account can
+After the ArcGIS Online has returned the user to your site, the module compares the user id
+or email address provided by ArcGIS Online. If the user has previously registered using
+ArcGIS Online or your site already has an account with the same email address, the user
+is logged in. If not, a new user account is created. Also, an ArcGIS Online account can
 be associated with an authenticated user.
-
-
-SUPPORT REQUESTS
-----------------
-
- * Before posting a support request, carefully read the installation
-   instructions provided in module documentation page.
-
- * Before posting a support request, check the Recent Log entries at
-   admin/reports/dblog
-
- * Once you have done this, you can post a support request at module issue
-   queue: [https://www.drupal.org/project/issues/social_auth_google](https://www.drupal.org/project/issues/social_auth_google)
-
- * When posting a support request, please inform if you were able to see any
-   errors in the Recent Log entries.
-
-
-MAINTAINERS
------------
-
-Current maintainers:
-
- * [Christopher C. Wells (wells)](https://www.drupal.org/u/wells)
-
-Development sponsored by:
-
- * [Cascade Public Media](https://www.drupal.org/cascade-public-media)
