@@ -47,7 +47,7 @@ In Drupal:
 
  1. Log in as an admin.
 
- 2. Navigate to Configuration » User authentication » Google and copy
+ 2. Navigate to Configuration » User authentication » ArcGIS Online and copy
    the Authorized redirect URL field value (the URL should end in
    `/user/login/ago/callback`).
 
@@ -69,15 +69,24 @@ In [ArcGIS Online](https://arcgis.com):
 
 In Drupal:
 
- 10. Return to Configuration » User authentication » Google
+ 10. Return to Configuration » User authentication » ArcGIS Online
 
- 11. Enter the Google client ID in the Client ID field.
+ 11. Enter the ArcGIS Online client ID in the Client ID field.
 
- 12. Enter the Google secret key in the Client secret field.
+ 12. Enter the ArcGIS Online secret key in the Client secret field.
 
- 13. Click Save configuration.
+ 13. Enter Authorization URL address to your custom ArcGIS Online site or Portal.
+     Or use default: https://www.arcgis.com/sharing/rest/oauth2/authorize
 
- 14. Navigate to Structure » Block Layout and place a Social Auth login block
+ 14. Enter Access Token URL address to your custom ArcGIS Online site or Portal.
+     Or use default: https://www.arcgis.com/sharing/rest/oauth2/token
+
+ 15. Enter Resource URL address to your custom ArcGIS Online site or Portal user information.
+     Or use default: https://www.arcgis.com/sharing/rest/community/self?f=json
+
+ 16. Click Save configuration.
+
+ 17. Navigate to Structure » Block Layout and place a Social Auth login block
      somewhere on the site (if not already placed).
 
 
