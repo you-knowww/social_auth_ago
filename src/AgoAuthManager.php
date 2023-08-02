@@ -32,8 +32,14 @@ class AgoAuthManager extends OAuth2Manager {
    */
   public function authenticate(): void {
     try {
-      $this->setAccessToken($this->client->getAccessToken('authorization_code',
-        ['code' => $this->request->query->get('code')]));
+      $token = $this->client->getAccessToken(
+                    'authorization_code',
+                    ['code' => $this->request->query->get('code')]
+                  );
+      $this->setAccessToken($token);
+      $request = \Drupal::request();
+      $session = $request->getSession();
+      $session->set('ago_access_token', $token);
     }
     catch (IdentityProviderException $e) {
       $this->loggerFactory->get('social_auth_ago')
