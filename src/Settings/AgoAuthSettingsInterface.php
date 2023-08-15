@@ -8,6 +8,13 @@ use Drupal\social_auth\Settings\SettingsInterface;
  * Defines an interface for Social Auth ArcGIS Online settings.
  */
 interface AgoAuthSettingsInterface extends SettingsInterface {
+  /**
+   * Gets Base URL.
+   *
+   * @return string|null
+   *   The base(d) URL.
+   */
+  public function getBaseUrl(): ?string;
 
   /**
    * Gets Authorization URL.

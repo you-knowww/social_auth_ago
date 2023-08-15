@@ -2,27 +2,31 @@
 
 namespace Drupal\social_auth_ago;
 
-use Drupal\Core\Config\ConfigFactory;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\social_auth\AuthManager\OAuth2Manager;
 use Drupal\social_auth\User\SocialAuthUser;
 use Drupal\social_auth\User\SocialAuthUserInterface;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Drupal\social_auth_ago\Settings\AgoAuthSettings;
 
 /**
  * Contains all the logic for AGO OAuth2 authentication.
  */
 class AgoAuthManager extends OAuth2Manager {
+  private $config_settings;
 
   /**
    * AgoAuthManager constructor.
    */
-  public function __construct(ConfigFactory $configFactory,
+  public function __construct(ConfigFactoryInterface $config_factory,
                               LoggerChannelFactoryInterface $logger_factory,
                               RequestStack $request_stack) {
 
-    parent::__construct($configFactory->get('social_auth_ago.settings'),
+    // print_r($configFactory->get('social_auth_ago.settings'));
+    $this->config_settings = $config_factory->get('social_auth_ago.settings');
+    parent::__construct($this->config_settings,
                         $logger_factory,
                         $request_stack->getCurrentRequest());
   }
@@ -37,9 +41,15 @@ class AgoAuthManager extends OAuth2Manager {
                     ['code' => $this->request->query->get('code')]
                   );
       $this->setAccessToken($token);
+
+      // store to session for easy retrieval
       $request = \Drupal::request();
       $session = $request->getSession();
-      $session->set('ago_access_token', $token);
+
+      // add reference to auth url for frontend
+      $session->set('ago_access_token',
+          (object) array('token' => $token,
+            'url' => $this->settings->get('url_base')));
     }
     catch (IdentityProviderException $e) {
       $this->loggerFactory->get('social_auth_ago')
@@ -121,5 +131,4 @@ class AgoAuthManager extends OAuth2Manager {
   public function getState(): string {
     return $this->client->getState();
   }
-
 }

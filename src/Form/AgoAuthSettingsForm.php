@@ -38,6 +38,14 @@ class AgoAuthSettingsForm extends SocialAuthSettingsForm {
 
     $config = $this->config('social_auth_ago.settings');
 
+    $form['network']['url_base'] = [
+      '#type' => 'textfield',
+      '#disabled' => FALSE,
+      '#title' => $this->t('Base URL'),
+      '#description' => $this->t('URL Base for ArcGIS Online or Portal. Default for AGO is <em>https://www.arcgis.com</em>. Portal usually ends in /portal, for example <em>https://www.fake-portal.com/portal</em>.'),
+      '#default_value' => 'https://www.arcgis.com',
+    ];
+
     $form['network']['url_authorization'] = [
       '#type' => 'textfield',
       '#disabled' => FALSE,
@@ -91,6 +99,7 @@ class AgoAuthSettingsForm extends SocialAuthSettingsForm {
     $this->config('social_auth_ago.settings')
       ->set('client_id', trim($values['client_id']))
       ->set('client_secret', trim($values['client_secret']))
+      ->set('url_base', trim($values['url_base']))
       ->set('url_authorization', trim($values['url_authorization']))
       ->set('url_access_token', trim($values['url_access_token']))
       ->set('url_resource_owner_details', trim($values['url_resource_owner_details']))

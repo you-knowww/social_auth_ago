@@ -46,7 +46,8 @@ class AgoAuth extends NetworkBase {
    * @see \Drupal\social_auth\Plugin\Network\NetworkBase::initSdk()
    */
   protected function getExtraSdkSettings(): array {
-    return ['urlAuthorize' => $this->settings->getAuthorizationUrl(),
+    return ['urlBase' => $this->settings->getBaseUrl(),
+            'urlAuthorize' => $this->settings->getAuthorizationUrl(),
             'urlAccessToken' => $this->settings->getAccessTokenUrl(),
             'urlResourceOwnerDetails' => $this->settings->getResourceOwnerDetailsUrl()];
   }
