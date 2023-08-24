@@ -49,7 +49,8 @@ class AgoAuthManager extends OAuth2Manager {
       // add reference to auth url for frontend
       $session->set('ago_access_token',
           (object) array('token' => $token,
-            'url' => $this->settings->get('url_base')));
+            'url' => $this->settings->get('url_base'),
+            'client_id' => $this->settings->get('client_id')));
     }
     catch (IdentityProviderException $e) {
       $this->loggerFactory->get('social_auth_ago')
