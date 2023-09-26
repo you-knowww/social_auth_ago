@@ -38,8 +38,7 @@ class AgoAuthManager extends OAuth2Manager {
     try {
       $token = $this->client->getAccessToken(
                     'authorization_code',
-                    ['code' => $this->request->query->get('code')]
-                  );
+                    ['code' => $this->request->query->get('code')]);
       $this->setAccessToken($token);
 
       // store to session for easy retrieval
@@ -77,8 +76,8 @@ class AgoAuthManager extends OAuth2Manager {
         $owner_array['email']
       );
       // set first and last
-      $this->user->setFirstName($owner_array['firstName']);
-      $this->user->setLastName($owner_array['lastName']);
+      //$this->user->setFirstName($owner_array['firstName']);
+      //$this->user->setLastName($owner_array['lastName']);
     }
     return $this->user;
   }
@@ -87,20 +86,10 @@ class AgoAuthManager extends OAuth2Manager {
    * {@inheritdoc}
    */
   public function getAuthorizationUrl(): string {
-    $scopes = [
-      'email',
-      'profile',
-    ];
-
-    $extra_scopes = $this->getScopes();
-    if ($extra_scopes) {
-      $scopes = array_merge($scopes, explode(',', $extra_scopes));
-    }
+    $scopes = $this->getScopes();
 
     // Returns the URL where user will be redirected.
-    return $this->client->getAuthorizationUrl([
-      'scope' => $scopes,
-    ]);
+    return $this->client->getAuthorizationUrl(['scope' => $scopes]);
   }
 
   /**

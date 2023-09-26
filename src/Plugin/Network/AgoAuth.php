@@ -51,5 +51,4 @@ class AgoAuth extends NetworkBase {
             'urlAccessToken' => $this->settings->getAccessTokenUrl(),
             'urlResourceOwnerDetails' => $this->settings->getResourceOwnerDetailsUrl()];
   }
-
 }
