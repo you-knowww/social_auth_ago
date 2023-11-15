@@ -45,9 +45,20 @@ class AgoAuthManager extends OAuth2Manager {
       $request = \Drupal::request();
       $session = $request->getSession();
 
-      // add reference to auth url for frontend
+      // ref non standard AGO token values
+      $tokenVals = $token->getValues();
+
+      // format for frontend token continuity
       $session->set('ago_access_token',
-          (object) array('token' => $token,
+          (object) array(
+            'token' => $token->getToken(),
+            // convert time to use miliseconds
+            'expires' => $token->getExpires() * 1000,
+            'refresh_token' => $token->getRefreshToken(),
+            // add expiration window to current time and convert to miliseconds
+            'refresh_expires' => ($token->getTimeNow()
+                                  + $tokenVals['refresh_token_expires_in']) * 1000,
+            'username' => $tokenVals['username'],
             'url' => $this->settings->get('url_base'),
             'client_id' => $this->settings->get('client_id')));
     }
